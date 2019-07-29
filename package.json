@@ -1,5 +1,5 @@
 {
-  "name": "pm2-slack",
+  "name": "pm2-slack-notify",
   "version": "0.1.0",
   "description": "A PM2 module to emit events to Slack, based on https://github.com/mattpker/pm2-slack",
   "main": "index.js",
