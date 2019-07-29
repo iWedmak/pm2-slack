@@ -13,7 +13,7 @@
   "keywords": [
     "pm2",
     "slack",
-    "env",
+    "env"
   ],
   "author": "iWedmak Om <iwedmak@gmail.com> (https://github.com/iWedmak)",
   "licenses": [
