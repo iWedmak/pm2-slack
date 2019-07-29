@@ -7,8 +7,8 @@ This is a PM2 Module for sending events & logs from your PM2 processes to Slack.
 To install and setup pm2-slack, run the following commands:
 
 ```
-pm2 install pm2-slack
-pm2 set pm2-slack:slack_url https://slack_url
+pm2 install pm2-slack-notify
+pm2 set pm2-slack-notify:slack_url https://slack_url
 ```
 Also, you can set any variable though envirouyment, just like this (`docker-compose` example):
 ```
@@ -38,8 +38,8 @@ The following events can be subscribed to:
 You can simply turn these on and off by setting them to true or false using the PM2 set command.
 
 ```
-pm2 set pm2-slack:log true
-pm2 set pm2-slack:error false
+pm2 set pm2-slack-notify:log true
+pm2 set pm2-slack-notify:error false
 ```
 
 ## Options
@@ -62,8 +62,8 @@ Any of them can be set though environment variable `pm2_slack_{option_name}`.
 The following configuration options will enable message buffering, and set the buffer duration to 5 seconds. All messages that occur within maximum 5 seconds delay between two neighboring messages will be concatenated into a single slack message.
 
 ```
-pm2 set pm2-slack:slack_url https://hooks.slack.com/services/123456789/123456789/aaaaaaa
-pm2 set pm2-slack:buffer_seconds 5
+pm2 set pm2-slack-notify:slack_url https://hooks.slack.com/services/123456789/123456789/aaaaaaa
+pm2 set pm2-slack-notify:buffer_seconds 5
 ```
 
 Note: In this example, the maximum total delay for messages is still 20 seconds (default value for `buffer_max_seconds`). After this time, the buffer will be flushed
@@ -73,7 +73,7 @@ everytime and all messages will be sent.
 
 By default, all options are defined for all processes globally.
 But you can separately define custom options to each PM2 process.
-Use format `pm2-slack:optionName-processName` to process based custom options.
+Use format `pm2-slack-notify:optionName-processName` to process based custom options.
 
 If no custom options is defined, the global `pm2-slack:propertyName` will be used.
 
@@ -87,22 +87,22 @@ Same buffer options will be used for all processed.
 
 ```
 # Define global options for all processes.
-pm2 set pm2-slack:buffer_seconds 5
+pm2 set pm2-slack-notify:buffer_seconds 5
 
 # Define global options for all processes.
 #   (for process `foo` and `bar` the values will be overridden below).
-pm2 set pm2-slack:slack_url https://hooks.slack.com/services/123456789/123456789/aaaaaaa
-pm2 set pm2-slack:servername Orion
+pm2 set pm2-slack-notify:slack_url https://hooks.slack.com/services/123456789/123456789/aaaaaaa
+pm2 set pm2-slack-notify:servername Orion
 
 # Define custom Slack Incomming Webhoook for `foo` process.
-pm2 set pm2-slack:slack_url-foo https://hooks.slack.com/services/123456789/123456789/bbbbbbb
-pm2 set pm2-slack:servername-foo Foo-server
-# Note: The `pm2-slack:buffer_seconds`=5 will be used from global options for this process. 
+pm2 set pm2-slack-notify:slack_url-foo https://hooks.slack.com/services/123456789/123456789/bbbbbbb
+pm2 set pm2-slack-notify:servername-foo Foo-server
+# Note: The `pm2-slack-notify:buffer_seconds`=5 will be used from global options for this process. 
 
 # Define custom Slack Incomming Webhoook for `bar` process
-pm2 set pm2-slack:slack_url-bar https://hooks.slack.com/services/123456789/123456789/ccccccc
-pm2 set pm2-slack:servername-foo Bar-server
-# Note: The `pm2-slack:buffer_seconds`=5 will be used from global options for this process. 
+pm2 set pm2-slack-notify:slack_url-bar https://hooks.slack.com/services/123456789/123456789/ccccccc
+pm2 set pm2-slack-notify:servername-foo Bar-server
+# Note: The `pm2-slack-notify:buffer_seconds`=5 will be used from global options for this process. 
 ```
   
 
