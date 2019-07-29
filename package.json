@@ -31,6 +31,11 @@
     "pmx": "^0.5.5",
     "request": "^2.67.0"
   },
+  "apps" : [{              // Module behavior options
+    "script"             : "index.js",
+    "merge_logs"         : true,
+    "max_memory_restart" : "200M"
+  }],
   "config": {
     "slack_url": null,
     "log": false,
