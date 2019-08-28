@@ -85,8 +85,8 @@ function sendToSlack(messages, config) {
     // Finally, make the post request to the Slack Incoming Webhook
     request(requestOptions, function(err, res, body) {
         if (err) return console.error(err);
-        if (body !== 'ok') {
-            console.error('Error sending notification to Slack, verify that the Slack URL for incoming webhooks is correct. ' + messages.length + ' unsended message(s) lost.');
+        if ((!body.error && body !== 'ok') || (body.error && body.error!='rate_limited')) {
+            console.log(body, 'Error sending notification to Slack, verify that the Slack URL for incoming webhooks is correct. ' + messages.length + ' unsended message(s) lost.');
         }
     });
 }
